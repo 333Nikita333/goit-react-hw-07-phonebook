@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AppBox = styled.div`
-  max-width: 800px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   display: flex;

@@ -6,7 +6,7 @@ import { FormBox, InputName, InputTel, Button } from './Form.styled';
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 const userSchema = object({
@@ -16,7 +16,7 @@ const userSchema = object({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required(),
-  number: string()
+  phone: string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
@@ -25,8 +25,8 @@ const userSchema = object({
 });
 
 export default function ContactForm({ onSubmit }) {
-  function handleSubmit({ name, number }, { resetForm }) {
-    onSubmit(name, number);
+  function handleSubmit({ name, phone }, { resetForm }) {
+    onSubmit(name, phone);
     resetForm();
   }
 
@@ -44,8 +44,8 @@ export default function ContactForm({ onSubmit }) {
         </label>
         <label>
           <span>Tel</span>
-          <InputTel type="tel" name="number" />
-          <ErrorMessage name="number" />
+          <InputTel type="tel" name="phone" />
+          <ErrorMessage name="phone" />
         </label>
         <Button type="submit">Add contact</Button>
       </FormBox>
