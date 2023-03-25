@@ -6,20 +6,22 @@ import {
   Name,
   Number,
 } from './ContactListItem.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
+import { selectIsLoading } from 'redux/selectors';
 
 const ContactsListItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
   const handleDelete = () => dispatch(deleteContact(id));
 
   return (
-    <Item id={id}>
+    <Item>
       <ContactInfo>
         <Name>{name}</Name>
         <Number>{phone}</Number>
       </ContactInfo>
-      <Button type="button" onClick={handleDelete}>
+      <Button type="button" onClick={handleDelete} disabled={isLoading}>
         Delete
       </Button>
     </Item>
