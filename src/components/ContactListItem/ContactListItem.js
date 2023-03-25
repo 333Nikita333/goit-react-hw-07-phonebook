@@ -5,10 +5,12 @@ import {
   Item,
   Name,
   Number,
+  UserIcon,
 } from './ContactListItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { selectIsLoading } from 'redux/selectors';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const ContactsListItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
@@ -17,12 +19,13 @@ const ContactsListItem = ({ id, name, phone }) => {
 
   return (
     <Item>
+      <UserIcon />
       <ContactInfo>
         <Name>{name}</Name>
         <Number>{phone}</Number>
       </ContactInfo>
       <Button type="button" onClick={handleDelete} disabled={isLoading}>
-        Delete
+        <AiOutlineDelete />
       </Button>
     </Item>
   );

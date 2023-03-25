@@ -1,8 +1,14 @@
 // *Form using the Formik library
-import { Formik, ErrorMessage } from 'formik';
+import { ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import PropTypes from 'prop-types';
-import { FormBox, InputName, InputTel, Button } from './Form.styled';
+import {
+  FormBox,
+  InputName,
+  InputTel,
+  Button,
+  FormikWrapper,
+} from './Form.styled';
 
 const initialValues = {
   name: '',
@@ -31,7 +37,7 @@ export default function ContactForm({ onSubmit }) {
   }
 
   return (
-    <Formik
+    <FormikWrapper
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={userSchema}
@@ -47,9 +53,11 @@ export default function ContactForm({ onSubmit }) {
           <InputTel type="tel" name="phone" />
           <ErrorMessage name="phone" />
         </label>
-        <Button type="submit">Add contact</Button>
+        <Button type="submit">
+          Add contact
+        </Button>
       </FormBox>
-    </Formik>
+    </FormikWrapper>
   );
 }
 
