@@ -4,6 +4,7 @@ import {
   ContactInfo,
   Name,
   Number,
+  Spinner,
   UserIcon,
 } from './ContactListItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +25,7 @@ const ContactsListItem = ({ contact }) => {
         <Number>{contact.phone}</Number>
       </ContactInfo>
       <Button type="button" onClick={handleDelete} disabled={isLoading}>
-        <AiOutlineDelete size={20} />
+        {isLoading ? <Spinner size={20} /> : <AiOutlineDelete size={20} />}
       </Button>
     </>
   );
