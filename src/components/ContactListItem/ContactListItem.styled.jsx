@@ -34,7 +34,7 @@ export const ContactInfo = styled.div`
 export const Button = styled.button`
   padding: 5px;
   border-color: #000000;
-  border-radius: 45px;
+  border-radius: 50%;
 
   &:hover {
     border-color: red;
