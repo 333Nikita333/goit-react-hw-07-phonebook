@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import {
   Button,
   ContactInfo,
-  Item,
   Name,
   Number,
   UserIcon,
@@ -12,29 +11,27 @@ import { deleteContact } from 'redux/operations';
 import { selectIsLoading } from 'redux/selectors';
 import { AiOutlineDelete } from 'react-icons/ai';
 
-const ContactsListItem = ({ id, name, phone }) => {
+const ContactsListItem = ({ contact }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const handleDelete = () => dispatch(deleteContact(id));
+  const handleDelete = () => dispatch(deleteContact(contact.id));
 
   return (
-    <Item>
+    <>
       <UserIcon />
       <ContactInfo>
-        <Name>{name}</Name>
-        <Number>{phone}</Number>
+        <Name>{contact.name}</Name>
+        <Number>{contact.phone}</Number>
       </ContactInfo>
       <Button type="button" onClick={handleDelete} disabled={isLoading}>
-        <AiOutlineDelete />
+        <AiOutlineDelete size={20} />
       </Button>
-    </Item>
+    </>
   );
 };
 
 ContactsListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactsListItem;

@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 
 import Form from './Form';
-import Filter from './Filter';
 import ContactsList from './ContactsList';
 import { AppBox } from './App.styled';
 import { toast, ToastContainer } from 'react-toastify';
@@ -31,7 +30,7 @@ export default function App() {
   function onSubmit(name, phone) {
     checkСontact(phone)
       ? notifiesAlert(phone)
-      : dispatch(addContact({name, phone}));
+      : dispatch(addContact({ name, phone }));
   }
 
   return (
@@ -41,19 +40,12 @@ export default function App() {
       <Form onSubmit={onSubmit} />
 
       <h2>Contacts</h2>
-      
+
       {isLoading && !error && <b>Request in progress...</b>}
 
-      {contacts !== undefined && contacts.length > 0 && (
-        <>
-          <Filter />
-          <ContactsList />
-        </>
-      )}
-
-      {!isLoading && contacts.length === 0 && (
-        <p>Contacts list is empty</p>
-      )}
+      {error && <p>Something went wrong, please try again later</p>}
+      
+      <ContactsList />
     </AppBox>
   );
 }
