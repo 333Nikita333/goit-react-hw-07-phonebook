@@ -6,12 +6,12 @@ import {
   Name,
   Number,
 } from './ContactListItem.styled';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/operations';
 
 const ContactsListItem = ({ id, name, phone }) => {
-  // const dispatch = useDispatch();
-
-  // const handleDelete = () => dispatch(deleteContact(id));
+  const dispatch = useDispatch();
+  const handleDelete = () => dispatch(deleteContact(id));
 
   return (
     <Item id={id}>
@@ -19,9 +19,7 @@ const ContactsListItem = ({ id, name, phone }) => {
         <Name>{name}</Name>
         <Number>{phone}</Number>
       </ContactInfo>
-      <Button type="button" 
-      // onClick={handleDelete}
-      >
+      <Button type="button" onClick={handleDelete}>
         Delete
       </Button>
     </Item>

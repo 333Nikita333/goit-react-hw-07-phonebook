@@ -7,7 +7,7 @@ import ContactsList from './ContactsList';
 import { AppBox } from './App.styled';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchContacts } from 'redux/operations';
+import { addContact, fetchContacts } from 'redux/operations';
 import { useEffect } from 'react';
 
 export default function App() {
@@ -20,27 +20,25 @@ export default function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  // function notifiesAlert(numberContact) {
-  //   return toast.error(`${numberContact} is already in contacts.`);
-  // }
+  function notifiesAlert(numberContact) {
+    return toast.error(`${numberContact} is already in contacts.`);
+  }
 
-  // function checkСontact(newNumber) {
-  //   return contacts.some(contact => contact.phone === newNumber);
-  // }
+  function checkСontact(newNumber) {
+    return contacts.some(contact => contact.phone === newNumber);
+  }
 
-  // function onSubmit(name, phone) {
-  //   checkСontact(phone)
-  //     ? notifiesAlert(phone)
-  //     : dispatch(addContact(name, phone));
-  // }
+  function onSubmit(name, phone) {
+    checkСontact(phone)
+      ? notifiesAlert(phone)
+      : dispatch(addContact({name, phone}));
+  }
 
   return (
     <AppBox>
       <ToastContainer autoClose={2000} position="top-center" />
       <h1>Phonebook</h1>
-      <Form 
-      // onSubmit={onSubmit} 
-      />
+      <Form onSubmit={onSubmit} />
 
       <h2>Contacts</h2>
       

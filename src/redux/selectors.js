@@ -11,7 +11,6 @@ export const selectFilter = state => state.filter;
 export const selectContactByName = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
-    console.log('Calculating visible contacts. Now memoized!');
     
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())

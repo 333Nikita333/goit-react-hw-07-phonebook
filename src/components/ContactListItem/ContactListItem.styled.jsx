@@ -14,6 +14,7 @@ export const Item = styled.li`
 `;
 export const ContactInfo = styled.div`
   display: flex;
+  align-items: baseline;
   gap: 10px;
   flex-direction: column;
 `;
