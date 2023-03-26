@@ -19,8 +19,10 @@ export default function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  function notifiesAlert(numberContact) {
-    return toast.error(`${numberContact} is already in contacts.`);
+  function notifiesAlert(numberContact, nameContact) {
+    return toast.error(
+      `${numberContact} is already in contacts under the name ${nameContact}.`
+    );
   }
 
   function checkСontact(newNumber) {
@@ -28,9 +30,12 @@ export default function App() {
   }
 
   function onSubmit(name, phone) {
-    checkСontact(phone)
-      ? notifiesAlert(phone)
-      : dispatch(addContact({ name, phone }));
+    if (checkСontact(phone)) {
+      return notifiesAlert(phone, name);
+    }
+
+    dispatch(addContact({ name, phone }));
+    toast.success(`Contact ${name} added successfully`);
   }
 
   return (
@@ -44,7 +49,7 @@ export default function App() {
       {isLoading && !error && <b>Request in progress...</b>}
 
       {error && <p>Something went wrong, please try again later</p>}
-      
+
       <ContactsList />
     </AppBox>
   );
